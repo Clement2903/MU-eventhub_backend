@@ -1,8 +1,12 @@
+
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const pool = require("./db");
 const app = express();
+
+// Allow Express to recognize HTTPS behind Render's proxy
+app.set("trust proxy", 1);
 
 const origins = (process.env.CLIENT_ORIGINS || "")
   .split(",").map(value => value.trim()).filter(Boolean);
